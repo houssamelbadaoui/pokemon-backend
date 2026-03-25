@@ -23,4 +23,18 @@ router.get("/lista", (req, res) => {
   res.json({ Pokemons: nombres });
 });
 
+// POST pokemon nueva
+router.post("/nuevo", (req, res) => {
+  const pokemonNuevo = req.body;
+
+  // validate fields
+  const { nombre, tipo, vida, defensa, ataques } = pokemonNuevo;
+  if (!nombre || !tipo || !vida || !defensa || !ataques)
+    return res.status(400).json("faltan datos necesarios");
+
+  pokemons.push(pokemonNuevo);
+  writeJson(filePath, pokemons);
+  res.status(200).json({ status: "ok" });
+});
+
 module.exports = router;
