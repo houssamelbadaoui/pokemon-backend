@@ -12,6 +12,10 @@ app.use(express.json());
 const pokemonRoutes = require("./routes/pokemon");
 app.use("/pokemon", pokemonRoutes);
 
+// montar combate route
+const combateRoute = require("./routes/combate");
+app.use("/combate", combateRoute);
+
 app.listen(3000, () => {
   console.log("Server running on port 3000.");
 });
