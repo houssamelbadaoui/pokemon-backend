@@ -99,12 +99,8 @@ router.post("/ataque", (req, res) => {
   const attackObj = attackerData.ataques.find((a) => a.nombre === ataque);
   if (!attackObj) return res.status(400).json("El ataque no existe");
 
-  const randomFactor = Math.random() * 0.3 + 0.85;
   const potencia = attackObj.potencia;
-  const daño = (potencia - defensorDefensa * 0.3) * randomFactor;
-
-  //limit for daño
-  if (daño < 5) daño = 5;
+  const daño = potencia;
 
   // apply damage
   defensor.vida -= daño;
